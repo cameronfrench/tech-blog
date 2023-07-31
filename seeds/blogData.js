@@ -24,6 +24,6 @@ const blogdata = [
   },
 ];
 
-const seedBlog = () => Blogpost.bulkCreate(blogdata);
+const seedBlog = () => Blogpost.bulkCreate(blogData);
 
 module.exports = seedBlog;
