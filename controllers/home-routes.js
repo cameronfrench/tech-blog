@@ -18,30 +18,19 @@ router.get('/', async (req, res) => {
   }
 });
 
-// // GET one blog
-// router.get('/blog/:id', async (req, res) => {
-//   try {
-//     const dbBlogpostData = await Blogpost.findByPk(req.params.id, {
-//       include: [
-//         {
-//           model: Blogpost,
-//           attributes: [
-//             'title',
-//             'author',
-//             'createdOn',
-//             'content',
-//           ],
-//         },
-//       ],
-//     });
-
-//     const blogpost = dbBlogpostData.get({ plain: true });
-//     res.render('blogpost', { blogpost, loggedIn: req.session.loggedIn });
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
+router.get('/dashboard', async (req, res) => {
+  try {
+    const dbBlogpostData = await Blogpost.findAll();
+    const blogposts = dbBlogpostData.map((blogpost) => blogpost.get({ plain: true }));
+    res.render('dashboard', {
+      blogposts,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 
 // Login route
 router.get('/login', (req, res) => {

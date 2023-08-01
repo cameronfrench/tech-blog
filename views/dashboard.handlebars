@@ -1,0 +1,14 @@
+<section class="container-fluid">
+  <h3>Your Dashboard</h3>
+  <!-- If the user is logged in, render their blog content -->
+  {{#if loggedIn}}
+  <div>
+    {{#each blogposts as |blogpost|}}
+    {{> blogpost-details}}
+    {{/each}}
+  </div>
+</section>
+<!-- Otherwise, provide a link to login -->
+{{else}}
+<a href="/login">You must login first to view this page</a>
+{{/if}}
