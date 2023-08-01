@@ -1,16 +1,28 @@
 const router = require('express').Router();
-const { Blogpost } = require('../models');
+const { Blogpost, User } = require('../models');
 
 // GET blogs for homepage
 router.get('/', async (req, res) => {
   try {
-      const dbBlogpostData = await Blogpost.findAll();
-      const blogposts = dbBlogpostData.map((blogpost) => 
+      const dbBlogData = await Blogpost.findAll({
+          include: [
+              {
+                  model: User,
+                  attributes: ['username'],
+              },
+          ],
+          order: [
+              ['id', 'DESC'],
+          ],
+      });
+
+      const blogposts = dbBlogData.map((blogpost) => 
           blogpost.get({ plain: true})
       );
       res.render('homepage', {
-          blogposts,
+          blogposts: blogposts,
           loggedIn: req.session.loggedIn,
+          username: req.session.username,
       });
   } catch (err) {
       console.log(err);
@@ -18,6 +30,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+// GET dashboard route 
 router.get('/dashboard', async (req, res) => {
   try {
     const dbBlogpostData = await Blogpost.findAll();
