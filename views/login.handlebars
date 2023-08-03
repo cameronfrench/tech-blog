@@ -1,18 +1,25 @@
-<form>
+<!-- Login Form -->
+<form class="login-form">
   <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    <label for="email-login" class="form-label">Email</label>
+    <input type="email" class="form-control" id="email-login" placeholder="Enter your email">
   </div>
   <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
+    <label for="password-login" class="form-label">Password</label>
+    <input type="password" class="form-control" id="password-login" placeholder="Enter your password">
   </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit">Login</button>
 </form>
 
-<script src="./js/login.js"></script>
+<!-- Signup Form -->
+<form class="signup-form">
+  <div class="mb-3">
+    <label for="username-signup" class="form-label">Username</label>
+    <input type="text" class="form-control" id="username-signup" placeholder="Choose a username">
+  </div>
+  <div class="mb-3">
+    <label for="password-signup" class="form-label">Password</label>
+    <input type="password" class="form-control" id="password-signup" placeholder="Choose a password">
+  </div>
+  <button type="submit">Sign Up</button>
+</form>

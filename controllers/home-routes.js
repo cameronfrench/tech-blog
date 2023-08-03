@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const { Blogpost, User } = require('../models');
+const withAuth = require('../utils/auth');
+
 
 // GET blogs for homepage
 router.get('/', async (req, res) => {
@@ -42,6 +44,18 @@ router.get('/dashboard', async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
+  }
+});
+
+router.get('/newblogpost', withAuth, async (req, res) => {
+  try {
+      res.render('new-blogpost', {
+          loggedIn: req.session.loggedIn,
+          userId: req.session.userId,
+      });
+  } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
   }
 });
 
